@@ -1,0 +1,28 @@
+RewriteEngine On
+
+# Permitir acceso a la carpeta
+Options +Indexes +FollowSymLinks
+
+# Permitir acceso desde cualquier origen
+<IfModule mod_headers.c>
+    Header always set Access-Control-Allow-Origin "*"
+    Header always set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+    Header always set Access-Control-Allow-Headers "Content-Type, Authorization"
+</IfModule>
+
+# Redirigir todas las peticiones al index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+# Permitir acceso a archivos HTML
+<Files "*.html">
+    Order allow,deny
+    Allow from all
+</Files>
+
+# Permitir acceso a archivos PHP
+<Files "*.php">
+    Order allow,deny
+    Allow from all
+</Files>

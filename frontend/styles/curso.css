@@ -1,0 +1,39 @@
+body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #667eea, #764ba2);
+      color: white;
+      padding: 30px;
+    }
+
+    .card {
+      background: white;
+      color: #333;
+      padding: 25px;
+      border-radius: 15px;
+      max-width: 600px;
+      margin: 40px auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .volver {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      background: #ffffff30;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .volver:hover {
+      background: #ffffff50;
+    }

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cursoos</title>
+  <link rel="stylesheet" href="styles/cursos.css">
+</head>
+<body>
+
+<div class="container">
+<div class="header-buttons">
+    <button class="cart-btn" onclick="irAlCarrito()">
+      🛒 <span id="contador-carrito" class="contador-carrito">0</span>
+    </button>
+    <button class="logout-btn" onclick="cerrarSesion()">Cerrar Sesión</button>
+  </div>
+  
+  <div class="header">
+    <h1>📚 Cursos</h1>
+    <p>Explora tu biblioteca de conocimientos</p>
+  </div>
+
+  <div style="text-align: center; margin-bottom: 20px;">
+  <input type="number" id="buscar-curso-id" placeholder="Buscar curso por ID" style="padding: 10px; border-radius: 5px; border: none; width: 200px;">
+  <button onclick="buscarCurso()" style="padding: 10px 20px; border: none; background: #28a745; color: white; border-radius: 5px; font-weight: bold; cursor: pointer;">
+    Buscar
+  </button>
+
+
+  <button onclick="mostrarFormularioCrear()" style="margin-left: 10px; padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px;">
+      ➕ Publicar Curso
+  </button>
+  <button id="toggleMisCursos" style="background: #6f42c1; color: white; margin-left: 10px;">👤 Mis Cursos Publicados</button>
+
+
+  </div>
+  <div id="loading" class="loading" style="display: none;">
+    Cargando cursos...
+  </div>
+
+  <div id="stats" class="stats-container" style="display: none;">
+    <h3>📊 Estadísticas</h3>
+    <p>Total de cursos disponibles: <span id="total-cursos">0</span></p>
+  </div>
+
+  <div id="mensaje" class="error-message" style="display: none;"></div>
+
+  <div id="cursos-container" class="cursos-grid"></div>
+  <div id="paginacion" style="text-align:center; margin: 20px 0;"></div>
+
+
+  <!-- Modal -->
+<div id="modalCrearCurso" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 9999; align-items: center; justify-content: center;">
+  <div style="background: white; padding: 30px; border-radius: 12px; width: 90%; max-width: 500px; position: relative;">
+    <span onclick="ocultarFormularioCrear()" style="position: absolute; top: 10px; right: 15px; font-size: 24px; cursor: pointer;">&times;</span>
+    <h2 style="margin-bottom: 20px;">📤 Publicar Nuevo Curso</h2>
+    <input type="text" id="titulo" placeholder="Título" required style="width:100%; padding:8px; margin-bottom:10px;">
+    <textarea id="descripcion" placeholder="Descripción" required style="width:100%; padding:8px; margin-bottom:10px;"></textarea>
+    <input type="text" id="instructor" placeholder="Instructor" required style="width:100%; padding:8px; margin-bottom:10px;">
+    <input type="url" id="imagen" placeholder="URL de imagen" style="width:100%; padding:8px; margin-bottom:10px;">
+    <input type="number" id="precio" placeholder="Precio" required style="width:100%; padding:8px; margin-bottom:10px;">
+    <div style="text-align: right;">
+      <button onclick="crearCurso()" style="background:#28a745; color:white; padding:10px 20px; border:none; border-radius:5px;">Publicar</button>
+      <button onclick="ocultarFormularioCrear()" style="margin-left:10px; background:#dc3545; color:white; padding:10px 20px; border:none; border-radius:5px;">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+</div>
+<div id="modalEliminar" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 9999;">
+  <div style="background: white; padding: 25px; border-radius: 12px; width: 90%; max-width: 400px; text-align: center;">
+    <h3 style="margin-bottom: 20px;">❗ ¿Estás seguro que deseas eliminar este curso?</h3>
+    <div style="display: flex; justify-content: space-around;">
+      <button id="confirmarEliminarBtn" style="padding: 10px 20px; background: red; color: white; border: none; border-radius: 5px;">Sí, eliminar</button>
+      <button onclick="cerrarModalEliminar()" style="padding: 10px 20px; background: gray; color: white; border: none; border-radius: 5px;">Cancelar</button>
+    </div>
+  </div>
+</div>
+<script src="scripts/cursos.js"></script>
+<div id="toast" style="position: fixed; bottom: 20px; right: 20px; background: #333; color: white; padding: 15px 20px; border-radius: 8px; display: none; z-index: 9999; box-shadow: 0 2px 10px rgba(0,0,0,0.3); font-weight: bold;"></div>
+</body>
+</html>

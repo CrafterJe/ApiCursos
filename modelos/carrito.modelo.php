@@ -95,7 +95,7 @@ class ModeloCarrito {
         ");
         $stmt->bindParam(":idc", $datos["Idcliente"], PDO::PARAM_INT);
         $stmt->bindParam(":metodo", $datos["MetodoPago"], PDO::PARAM_STR);
-        $stmt->bindParam(":fecha", $datos["FechaCompra"], PDO::PARAM_INT);
+        $stmt->bindParam(":fecha", $datos["FechaCompra"], PDO::PARAM_STR);
         $stmt->bindParam(":idcurso", $datos["Idcurso"], PDO::PARAM_INT);
         $stmt->bindParam(":total", $datos["TotalCompra"], PDO::PARAM_STR);
 

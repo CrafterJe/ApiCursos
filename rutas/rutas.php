@@ -116,6 +116,34 @@ if ($metodo === "POST" && isset($_GET["ruta"]) && $_GET["ruta"] === "login") {
     return;
 }
 
+// GET /clientes/perfil
+if (count($arrayRutas) === 2 && $arrayRutas[0] === "clientes" && $arrayRutas[1] === "perfil" && $metodo === "GET") {
+    if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW'])) {
+        echo json_encode(["status" => 401, "detalle" => "No autorizado"]);
+        return;
+    }
+
+    $id_cliente = $_SERVER['PHP_AUTH_USER'];
+    $llave_secreta = $_SERVER['PHP_AUTH_PW'];
+
+    $respuesta = ModeloClientes::obtenerPerfil($id_cliente);
+
+    if ($respuesta) {
+        echo json_encode([
+            "status" => 200,
+            "nombre" => $respuesta["nombre"],
+            "apellido" => $respuesta["apellido"],
+            "correo" => $respuesta["email"]
+        ]);
+    } else {
+        echo json_encode(["status" => 403, "detalle" => "Token inválido"]);
+    }
+
+    return;
+}
+
+
+
 // =============================
 // Rutas del Carrito
 // =============================
@@ -167,6 +195,17 @@ if (count($arrayRutas) === 3 && $arrayRutas[0] === "carrito" && $arrayRutas[1] =
     return;
 }
 
+
+// =============================
+// Rutas de Compras
+// =============================
+
+if (count($arrayRutas) === 3 && $arrayRutas[0] === "compras" && $arrayRutas[1] === "cliente" && $metodo === "GET") {
+    $idCliente = $arrayRutas[2];
+    $compras = new ControladorCompras();
+    $compras->obtenerComprasPorCliente($idCliente);
+    return;
+}
 
 
 // =============================

@@ -25,6 +25,7 @@ set_error_handler(function ($errno, $errstr, $errfile, $errline) {
 require_once "controladores/clientes.controlador.php";
 require_once "controladores/cursos.controlador.php";
 require_once "controladores/carrito.controlador.php";
+require_once "controladores/compras.controlador.php";
 
 // Redirigir el enrutamiento a rutas.php
 require_once "rutas/rutas.php";

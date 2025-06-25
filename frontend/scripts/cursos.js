@@ -180,10 +180,33 @@ document.addEventListener("DOMContentLoaded", function () {
         paginacionContainer.appendChild(btn);
       }
     }
-
+        function cargarPerfilCliente() {
+      if (!id_cliente || !llave_secreta) return;
+        
+      const authHeader = "Basic " + btoa(id_cliente + ":" + llave_secreta);
+        
+      fetch("http://localhost/api-rest/clientes/perfil", {
+        method: "GET",
+        headers: {
+          "Authorization": authHeader,
+        }
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data && data.nombre && data.apellido && data.correo) {
+            document.getElementById("nombre-cliente").textContent = `${data.nombre} ${data.apellido}`;
+            document.getElementById("correo-cliente").textContent = data.correo;
+          }
+        })
+        .catch(error => {
+          console.error("❌ Error al cargar perfil del cliente:", error);
+        });
+    }
+      
 
       // Cargar cursos al iniciar la página
       cargarCursos(1)
+      cargarPerfilCliente();
 
       function mostrarFormularioCrear() {
         document.getElementById("modalCrearCurso").style.display = "flex";

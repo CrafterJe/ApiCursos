@@ -28,7 +28,9 @@ class ControladorClientes{
         ) {
             echo json_encode([
                 "status" => 200,
-                "detalle" => "Acceso permitido"
+                "detalle" => "Acceso permitido",
+                "id" => $cliente["id"],
+                "cliente" => $cliente
             ]);
             return;
         }
@@ -193,6 +195,17 @@ class ControladorClientes{
 
 
     }
+
+
+    public function obtenerPerfil($id_cliente) {
+    $cliente = ModeloClientes::obtenerPerfil($id_cliente);
+
+    if ($cliente) {
+      echo json_encode($cliente); // se espera algo como ["nombre" => ..., "apellido" => ..., "correo" => ...]
+    } else {
+      echo json_encode(["status" => 404, "detalle" => "Cliente no encontrado"]);
+    }
+  }
 
 
 }

@@ -52,5 +52,14 @@ class ModeloClientes{
 
         return $resultado ? $resultado["id"] : null;
     }
+
+    // GET /clientes/perfil
+    public static function obtenerPerfil($id_cliente) {
+        $sql = "SELECT nombre, apellido, email FROM clientes WHERE id_cliente = :id";
+        $stmt = Conexion::conectar()->prepare($sql);
+        $stmt->bindParam(":id", $id_cliente, PDO::PARAM_STR); 
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
 ?>

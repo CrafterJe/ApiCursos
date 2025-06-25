@@ -1,4 +1,4 @@
-let mostrarSoloMisCursos = false;
+let mostrarSoloMisPublicaciones = false;
 document.addEventListener("DOMContentLoaded", function () {
     function buscarCurso() {
       const id = document.getElementById("buscar-curso-id").value;
@@ -53,12 +53,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const authHeader = "Basic " + btoa(id_cliente + ":" + llave_secreta);
       
-      const url = mostrarSoloMisCursos
+      const url = mostrarSoloMisPublicaciones
         ? "http://localhost/api-rest/cursos/mis"
         : `http://localhost/api-rest/cursos?pagina=${pagina}`;
 
       console.log("🔍 Realizando petición a:", url);
-      console.log("🔍 Modo mis cursos:", mostrarSoloMisCursos);
+      console.log("🔍 Modo mis publicaciones:", mostrarSoloMisPublicaciones);
 
       fetch(url, {
         method: "GET",
@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div class="curso-precio">💰 $${parseFloat(curso.precio).toFixed(2)}</div>
               `;
             
-              if (mostrarSoloMisCursos) {
+              if (mostrarSoloMisPublicaciones) {
                 const acciones = document.createElement("div");
                 acciones.className = "curso-acciones";
                 acciones.innerHTML = `
@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", function () {
         
 
             // Paginación solo para vista general
-            if (!mostrarSoloMisCursos) {
+            if (!mostrarSoloMisPublicaciones) {
               renderPaginacion(Math.ceil(data.total_registros / 9));
             } else {
               document.getElementById("paginacion").innerHTML = "";
@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
           } else {
             // No hay cursos - mostrar mensaje apropiado
             console.log("📭 No hay cursos para mostrar");
-            const mensaje = mostrarSoloMisCursos 
+            const mensaje = mostrarSoloMisPublicaciones 
               ? "📚 No tienes cursos registrados aún." 
               : "📚 No hay cursos disponibles.";
             mostrarMensaje(mensaje, 'success');
@@ -259,9 +259,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     
 
-    document.getElementById("toggleMisCursos").addEventListener("click", () => {
-      mostrarSoloMisCursos = !mostrarSoloMisCursos;
-      document.getElementById("toggleMisCursos").textContent = mostrarSoloMisCursos ? "👁 Ver todos" : "👤 Mis Cursos Publicados";
+    document.getElementById("toggleMisPublicaciones").addEventListener("click", () => {
+      mostrarSoloMisPublicaciones = !mostrarSoloMisPublicaciones;
+      document.getElementById("toggleMisPublicaciones").textContent = mostrarSoloMisPublicaciones ? "👁 Ver todos" : "👤 Mis Publicaciones";
       cargarCursos(paginaActual); // recargar la misma página con filtro aplicado
     });
     function irAlCarrito() {

@@ -10,6 +10,7 @@
 <body>
   <div class="contenedor-carrito">
     <h2>🛒 Mi Carrito</h2>
+
     <div id="carrito-lista">
       <p>🔄 Cargando productos...</p>
     </div>
@@ -19,14 +20,15 @@
       <p><strong>Total de productos: <span id="total-productos">0</span></strong></p>
       <p><strong>Total a pagar: $<span id="total-precio">0.00</span></strong></p>
     </div>
-    <script src="https://www.paypal.com/sdk/js?client-id=ARyjZ7qHwZKflht-NuppKS8b4cDWsdwEIJNmF4HSO_8u2CJGCTCSe7ASwGRs82cWYKEPuEn2upP7jRUC&currency=MXN"></script>
 
     <div id="paypal-container" style="display: none;">
       <div id="paypal-button-container"></div>
     </div>
+
     <a href="cursos.html" class="boton-regresar">⬅️ Volver a Cursos</a>
   </div>
 
+  <script src="https://www.paypal.com/sdk/js?client-id=ARyjZ7qHwZKflht-NuppKS8b4cDWsdwEIJNmF4HSO_8u2CJGCTCSe7ASwGRs82cWYKEPuEn2upP7jRUC&currency=MXN"></script>
   <script src="scripts/carrito.js"></script>
 </body>
 </html>

@@ -207,6 +207,18 @@ if (count($arrayRutas) === 3 && $arrayRutas[0] === "compras" && $arrayRutas[1] =
     return;
 }
 
+// =============================
+// Rutas de YouTube (GET /youtube/canal/:id)
+// =============================
+if (count($arrayRutas) === 3 && $arrayRutas[0] === "youtube" && $arrayRutas[1] === "canal" && $metodo === "GET") {
+    require_once "controladores/youtube.controlador.php";
+    $idCanal = $arrayRutas[2];
+    $respuesta = YoutubeControlador::ctrObtenerCanal($idCanal);
+    echo json_encode($respuesta, JSON_PRETTY_PRINT);
+    return;
+}
+
+
 
 // =============================
 // Ruta no válida

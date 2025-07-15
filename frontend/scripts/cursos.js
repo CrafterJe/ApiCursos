@@ -1,4 +1,5 @@
 let mostrarSoloMisPublicaciones = false;
+
 document.addEventListener("DOMContentLoaded", function () {
     function buscarCurso() {
       const id = document.getElementById("buscar-curso-id").value;
@@ -180,6 +181,7 @@ document.addEventListener("DOMContentLoaded", function () {
         paginacionContainer.appendChild(btn);
       }
     }
+    
         function cargarPerfilCliente() {
       if (!id_cliente || !llave_secreta) return;
         
@@ -290,7 +292,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function irAlCarrito() {
       window.location.href = "carrito.html";
     }
-
+    function irAYoutube() { window.location.href = 'http://localhost/api-rest/frontend/youtube.html'; }
     function agregarAlCarrito(curso) {
       const authHeader = "Basic " + btoa(id_cliente + ":" + llave_secreta);
 
@@ -489,5 +491,6 @@ document.addEventListener("DOMContentLoaded", function () {
     window.mostrarFormularioCrear = mostrarFormularioCrear;
     window.ocultarFormularioCrear = ocultarFormularioCrear;
     window.irAlCarrito = irAlCarrito;
+    window.irAYoutube = irAYoutube;
 });
 

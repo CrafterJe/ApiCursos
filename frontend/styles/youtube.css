@@ -1,0 +1,24 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  max-width: 600px;
+  margin: auto;
+}
+
+h1 {
+  color: #cc0000;
+}
+
+img {
+  border-radius: 8px;
+  max-width: 100%;
+}
+
+.info {
+  margin-top: 20px;
+}
+
+.stat {
+  font-weight: bold;
+  margin-top: 10px;
+}

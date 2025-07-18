@@ -296,8 +296,85 @@
 
     @media (max-width: 480px) {
       .header-buttons {
-        flex-direction: column; /* Apila verticalmente en pantallas muy pequeñas */
+        flex-direction: column; 
         align-items: center;
         gap: 10px;
       }
     }
+
+#player {
+      display: flex;
+      justify-content: center;
+      margin: 30px auto;
+      position: relative;
+      width: 95%;
+      max-width: 1200px;
+    }
+
+    #player iframe {
+      width: 100% !important;
+      height: 600px !important;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+      pointer-events: none;
+    }
+
+    /* Responsivo para pantallas más pequeñas */
+    @media (max-width: 768px) {
+      #player iframe {
+        height: 400px !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      #player iframe {
+        height: 300px !important;
+      }
+      
+      #player {
+        width: 98%;
+      }
+    }
+
+    /* Capa invisible sobre el iframe para bloquear clics */
+    #player::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      z-index: 1;
+      pointer-events: auto;
+    }
+
+    /* Estilos para los botones de control */
+    .control-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+
+    .control-buttons button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .control-buttons button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .play-btn { background: #28a745; color: white; }
+    .pause-btn { background: #ffc107; color: #333; }
+    .stop-btn { background: #dc3545; color: white; }
+    .volume { background: #17a2b8; color: white; }
+    .videosignext { background: #6f42c1; color: white; }

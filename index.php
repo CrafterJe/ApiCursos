@@ -26,6 +26,7 @@ require_once "controladores/clientes.controlador.php";
 require_once "controladores/cursos.controlador.php";
 require_once "controladores/carrito.controlador.php";
 require_once "controladores/compras.controlador.php";
+require_once "controladores/youtube.controlador.php";
 
 // Redirigir el enrutamiento a rutas.php
 require_once "rutas/rutas.php";

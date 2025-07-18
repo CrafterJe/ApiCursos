@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cursoos</title>
+  <title>Cursos</title>
   <link rel="stylesheet" href="styles/cursos.css">
+  <style>
+    
+  </style>
 </head>
 <body>
 
@@ -44,6 +47,22 @@
   📺 Canal YouTube
   </button>
   </div>
+  
+  <div style="display: flex; justify-content: center; margin-top: 20px;">
+    <div id="player"></div>
+  </div>
+
+  <div class="control-buttons">
+    <button class="play-btn" onclick="playVideo()">▶️ Reproducir</button>
+    <button class="pause-btn" onclick="pauseVideo()">⏸️ Pausar</button>
+    <button class="stop-btn" onclick="stopVideo()">⏹️ Detener</button>
+    <button class="volume" onclick="increaseVolume()">🔊 Subir volumen</button>
+    <button class="volume" onclick="decreaseVolume()">🔉 Bajar volumen</button>
+    <button class="videosignext" onclick="anteriorVideo()">⬅️ Anterior</button>
+    <button class="videosignext" onclick="siguienteVideo()">➡️ Siguiente</button>
+  </div>
+
+
   <div id="loading" class="loading" style="display: none;">
     Cargando cursos...
   </div>
@@ -88,5 +107,14 @@
 </div>
 <script src="scripts/cursos.js"></script>
 <div id="toast" style="position: fixed; bottom: 20px; right: 20px; background: #333; color: white; padding: 15px 20px; border-radius: 8px; display: none; z-index: 9999; box-shadow: 0 2px 10px rgba(0,0,0,0.3); font-weight: bold;"></div>
+
+<script>
+  
+</script>
+<script>
+  
+
+</script>
+
 </body>
 </html>

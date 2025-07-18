@@ -488,9 +488,121 @@ document.addEventListener("DOMContentLoaded", function () {
 
     window.buscarCurso = buscarCurso;
     window.cerrarSesion = cerrarSesion;
+    window.eliminarCurso = eliminarCurso;
+    window.editarCurso = editarCurso;
     window.mostrarFormularioCrear = mostrarFormularioCrear;
     window.ocultarFormularioCrear = ocultarFormularioCrear;
     window.irAlCarrito = irAlCarrito;
     window.irAYoutube = irAYoutube;
+
+    // ===== SCRIPTS DE YOUTUBE =====
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    const videoIds = ['SvOlbYgSvzc', 'w7ejDZ8SWv8']; // Agrega más si quieres
+    let currentVideoIndex = 0;
+    var player;
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+      height: '600',
+      width: '100%',
+      videoId: videoIds[currentVideoIndex],
+      playerVars: { 
+        'playsinline': 1,
+        'controls': 0,  // Oculta los controles nativos de YouTube
+        'disablekb': 1, // Desactiva controles de teclado
+        'fs': 0,        // Desactiva pantalla completa
+        'iv_load_policy': 3, // Oculta anotaciones
+        'modestbranding': 1, // Minimiza el branding de YouTube
+        'rel': 0        // No muestra videos relacionados
+      },
+      events: {
+        'onReady': onPlayerReady,
+        'onStateChange': onPlayerStateChange
+      }
+    });
+  }
+
+  function onPlayerReady(event) {
+    // El reproductor está listo
+    console.log('Reproductor YouTube listo');
+  }
+
+  function onPlayerStateChange(event) {
+    // Maneja cambios de estado si es necesario
+  }
+
+  function playVideo() {
+    if (player && player.playVideo) {
+      player.playVideo();
+    }
+  }
+
+  function pauseVideo() {
+    if (player && player.pauseVideo) {
+      player.pauseVideo();
+    }
+  }
+
+  function stopVideo() {
+    if (player && player.stopVideo) {
+      player.stopVideo();
+    }
+  }
+
+  function increaseVolume() {
+    if (player && player.getVolume && player.setVolume) {
+      let currentVolume = player.getVolume();
+      if (currentVolume < 100) {
+        player.setVolume(Math.min(currentVolume + 10, 100));
+      }
+    }
+  }
+
+  function decreaseVolume() {
+    if (player && player.getVolume && player.setVolume) {
+      let currentVolume = player.getVolume();
+      if (currentVolume > 0) {
+        player.setVolume(Math.max(currentVolume - 10, 0));
+      }
+    }
+  }
+
+  // Cambiar al video siguiente
+  function siguienteVideo() {
+  currentVideoIndex = (currentVideoIndex + 1) % videoIds.length;
+  player.loadVideoById(videoIds[currentVideoIndex]);
+}
+
+  // Cambiar al video anterior
+  function anteriorVideo() {
+  currentVideoIndex = (currentVideoIndex - 1 + videoIds.length) % videoIds.length;
+  player.loadVideoById(videoIds[currentVideoIndex]);
+}
+
+  // Prevenir clic derecho en el iframe
+  document.addEventListener('contextmenu', function(e) {
+    if (e.target.tagName === 'IFRAME') {
+      e.preventDefault();
+    }
+  });
+
+  // Prevenir drag and drop en el iframe
+  document.addEventListener('dragstart', function(e) {
+    if (e.target.tagName === 'IFRAME') {
+      e.preventDefault();
+    }
+  });
+  window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
+    window.playVideo = playVideo;
+    window.pauseVideo = pauseVideo;
+    window.stopVideo = stopVideo;
+    window.increaseVolume = increaseVolume;
+    window.decreaseVolume = decreaseVolume;
+    window.cerrarModalEliminar = cerrarModalEliminar;
+    window.siguienteVideo = siguienteVideo;
+    window.anteriorVideo = anteriorVideo;
 });
 
